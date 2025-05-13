@@ -1,20 +1,41 @@
 from django.shortcuts import render
 
+from .models import Post
+
 # Create your views here.
 
 posts = [
-  {'Author':'Chris','Title':'BookA','Content':'Some word here','Date':'August 26 2025'},
-  {'Author':'Ruby','Title':'BookB','Content':'Some word here','Date':'August 24 2022'},
-  {'Author':'Andy','Title':'BookC','Content':'Some word here','Date':'August 13 2024'},
-  {'Author':'Yolanda','Title':'BookD','Content':'Some word here','Date':'August 01 2017'},
+    {
+        "author": "Chris",
+        "title": "BookA",
+        "content": "Some word here",
+        "date_posted": "August 26 2025",
+    },
+    {
+        "author": "Ruby",
+        "title": "BookB",
+        "content": "Some word here",
+        "date_posted": "August 24 2022",
+    },
+    {
+        "author": "Andy",
+        "title": "BookC",
+        "content": "Some word here",
+        "date_posted": "August 13 2024",
+    },
+    {
+        "author": "Yolanda",
+        "title": "BookD",
+        "content": "Some word here",
+        "date_posted": "August 01 2017",
+    },
 ]
 
+
 def home_page(request):
-  context = {
-    'posts':posts
-  }
-  return render(request, 'blog/home.html', context)
+    context = {"posts": Post.objects.all()}
+    return render(request, "blog/home.html", context)
 
 
 def about_page(request):
-  return render(request,'blog/about.html',{'title':'About'})
+    return render(request, "blog/about.html", {"title": "About"})
